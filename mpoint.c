@@ -2,7 +2,7 @@
 Program			: mpoint.c
 Deskripsi		: Menyelesaikan persoalan point
 Nama			: Irsyad Muhammad
-Versi/Tanggal	: 1 Maret 2020
+Versi/Tanggal	: 02/1 Maret 2020
 Compiler		: TDM-GCC 4.9.2 64-bit Release
 */
 
@@ -31,46 +31,72 @@ int main(){
 	P = CreatePoint(x,y);
 
 	//selection
-	if(Kuadran(P) == 1){
-		
-		/*Geser sebanyak 1 ke arah kanan*/
-		NextX(&P);
-		
-		printf("\n");
+	if(IsOrigin(P)== 1){
 		PrintPoint(P);
-	}
-	else if(Kuadran(P) == 2){
-
-		/*Geser sebanyak 1 ke arah kiri*/
-		PrevX(&P);
-		
-		printf("\n");
-		PrintPoint(P);
-	}
-	else if(Kuadran(P) == 3 ){
-		
-		/*Geser ke arah kiri sejauh N*/
-		printf("\nGeser P sejauh N ke arah kiri\n");
-		printf("\nMasukkan nilai N : ");
-
-		/*input user*/
-		scanf("%d", &N);
-		PrevX_N(&P,N);//N parameter input diambil dari input user
-
-		PrintPoint(P);
+		printf("\nTitik berada di titik origin");
 	}
 	else{
-		
-		/*Geser ke arah kiri sejauh N*/
-		printf("\nGeser P sejauh N ke arah kanan\n");
-		printf("\nMasukkan nilai N : ");
-		
-		/*input user*/
-		scanf("%d", &N);
-		NextX_N(&P,N);//N parameter input diambil dari input user
-		
-		PrintPoint(P);
+		if(IsOnSumbuY(P) == 1){
+			PrintPoint(P);
+			printf("\nTitik berada di sumbu Y");
+		}
+		else{
+			if(IsOnSumbuX(P) == 1){
+				PrintPoint(P);
+				printf("\nTitik berada di sumbu X");
+			}
+			else{
+				if(Kuadran(P) == 1){
+				
+					PrintPoint(P);
+					/*Geser sebanyak 1 ke arah kanan*/
+					NextX(&P);
+					
+					printf("\n");
+					PrintPoint(P);
+				}
+				else if(Kuadran(P) == 2){
+					
+					PrintPoint(P);
+					/*Geser sebanyak 1 ke arah kiri*/
+					PrevX(&P);
+					
+					printf("\n");
+					PrintPoint(P);
+				}
+				else if(Kuadran(P) == 3 ){
+					
+					/*Geser ke arah kiri sejauh N*/
+					printf("\nGeser P sejauh N ke arah kiri\n");
+					printf("\nMasukkan nilai N : ");
+			
+					/*input user*/
+					scanf("%d", &N);
+					PrintPoint(P);
+					
+					PrevX_N(&P,N);//N parameter input diambil dari input user
+			
+					PrintPoint(P);
+				}
+				else{
+					
+					/*Geser ke arah kiri sejauh N*/
+					printf("\nGeser P sejauh N ke arah kanan\n");
+					printf("\nMasukkan nilai N : ");
+					
+					/*input user*/
+					scanf("%d", &N);
+					
+					PrintPoint(P);
+					NextX_N(&P,N);//N parameter input diambil dari input user
+					
+					PrintPoint(P);
+				}
+			}
+		}
 	}
+
+	
 	
 	return 0;
 }
